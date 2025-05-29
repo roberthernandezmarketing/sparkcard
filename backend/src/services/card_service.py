@@ -1,0 +1,25 @@
+# sparkcard/backend/src/services/card_service.py
+from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List, Optional
+
+from src.crud.card import card_crud
+from src.schemas.card_schema import CardCreate, CardUpdate
+from src.models.card_model import Card as CardModel
+
+class CardService:
+    async def get_card_by_id(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:
+        return await card_crud.get_card(db, card_id)
+
+    async def get_all_cards(self, db: AsyncSession, skip: int = 0, limit: int = 100) -> List[CardModel]:
+        return await card_crud.get_all_cards(db, skip, limit)
+
+    async def create_new_card(self, db: AsyncSession, card_data: CardCreate) -> CardModel:
+        return await card_crud.create_card(db, card_data)
+
+    async def update_existing_card(self, db: AsyncSession, card_id: int, card_update_data: CardUpdate) -> Optional[CardModel]:
+        return await card_crud.update_card(db, card_id, card_update_data)
+
+    async def delete_card_by_id(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:
+        return await card_crud.delete_card(db, card_id)
+
+card_service = CardService()
