@@ -1,6 +1,6 @@
 # sparkcard/backend/src/models/question_type_model.py
 from sqlalchemy import Column, Integer, Text
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class QuestionType(Base):
     __tablename__ = 'question_type'

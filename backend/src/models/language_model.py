@@ -1,6 +1,6 @@
 # sparkcard/backend/src/models/language_model.py
 from sqlalchemy import Column, Integer, Text, String
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class Language(Base):
     __tablename__ = 'languages'

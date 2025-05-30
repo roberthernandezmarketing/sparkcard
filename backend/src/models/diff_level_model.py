@@ -1,6 +1,6 @@
 # sparkcard/backend/src/models/diff_level_model.py
 from sqlalchemy import Column, Integer, Text
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class DifficultyLevel(Base):
     __tablename__ = 'diff_level'

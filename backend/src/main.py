@@ -1,10 +1,11 @@
 # sparkcard/backend/src/main.py
 from fastapi import FastAPI
-from src.api.v1.routes import card_routes
+# from src.api.v1.routes import card_routes
+from backend.src.api.v1.routes import card_routes
 
 app = FastAPI(
-    title="Sparkcard API by Rob Hernandez @kreativedevlab",
-    description="API for managing flashcards and study content.",
+    title="Sparkcard API.",
+    description="API for managing flashcards and study content by Rob Hernandez @kreativedevlab.",
     version="1.0.0",
 )
 

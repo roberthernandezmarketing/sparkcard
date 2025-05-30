@@ -1,7 +1,7 @@
 # sparkcard/backend/src/models/topic_model.py
 from sqlalchemy import Column, Integer, Text, ForeignKey
 from sqlalchemy.orm import relationship
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class Topic(Base):
     __tablename__ = 'topic'

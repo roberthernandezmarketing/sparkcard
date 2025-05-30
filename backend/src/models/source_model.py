@@ -1,7 +1,7 @@
 # sparkcard/backend/src/models/source_model.py
 from sqlalchemy import Column, Integer, Text, String, ForeignKey
 from sqlalchemy.orm import relationship
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class Author(Base):
     __tablename__ = 'authors'

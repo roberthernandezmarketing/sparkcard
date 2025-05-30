@@ -2,7 +2,7 @@
 from sqlalchemy import Column, Integer, Text, ForeignKey, TIMESTAMP, Boolean, ARRAY
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class Card(Base):
     __tablename__ = 'card'

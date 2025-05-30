@@ -3,8 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import List, Optional
 
-from src.models.card_model   import Card as CardModel
-from src.schemas.card_schema import CardCreate, CardUpdate
+from backend.src.models.card_model   import Card as CardModel
+from backend.src.schemas.card_schema import CardCreate, CardUpdate
 
 class CRUDCard:
     async def get_card(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:

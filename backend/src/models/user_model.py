@@ -1,7 +1,7 @@
 # sparkcard/backend/src/models/user_model.py
 from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
-from src.db.base import Base
+from backend.src.db.base import Base
 from datetime import datetime
 
 class User(Base):

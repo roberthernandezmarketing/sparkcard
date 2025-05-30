@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
-from src.schemas.card_schema import Card, CardCreate
-from src.services.card_service import card_service
-from src.api.v1.deps import get_db_session
+from backend.src.schemas.card_schema import Card, CardCreate
+from backend.src.services.card_service import card_service
+from backend.src.api.v1.deps import get_db_session
 
 router = APIRouter()
 

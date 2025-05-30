@@ -1,6 +1,6 @@
 # sparkcard/backend/src/models/status_model.py
 from sqlalchemy import Column, Integer, Text
-from src.db.base import Base
+from backend.src.db.base import Base
 
 class Status(Base):
     __tablename__ = 'status'

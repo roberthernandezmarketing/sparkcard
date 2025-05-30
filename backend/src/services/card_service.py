@@ -2,9 +2,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
 
-from src.crud.card import card_crud
-from src.schemas.card_schema import CardCreate, CardUpdate
-from src.models.card_model import Card as CardModel
+from backend.src.crud.card import card_crud
+from backend.src.schemas.card_schema import CardCreate, CardUpdate
+from backend.src.models.card_model import Card as CardModel
 
 class CardService:
     async def get_card_by_id(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:
