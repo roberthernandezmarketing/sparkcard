@@ -22,6 +22,7 @@ origins = [
     FRONTEND_URL,
     "http://localhost:3000",  # Para desarrollo local de tu frontend
     "http://localhost:8000",  # Si corres tu frontend en 8000 localmente para pruebas
+    "https://sparkcard.kreativedevlabs.com/",
 ]
 
 # Si tu frontend puede estar en múltiples subdominios o necesitas más flexibilidad,
