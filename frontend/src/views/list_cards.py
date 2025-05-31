@@ -23,7 +23,7 @@ def main(page: ft.Page):
         response.raise_for_status()
         cards = response.json()
 
-        # Limpiar loading
+        # Clear loading message
         page.controls.clear()
 
         # Mostrar cada card
