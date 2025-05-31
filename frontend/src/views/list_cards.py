@@ -29,14 +29,14 @@ def main(page: ft.Page):
         for card in cards:
             card_view = ft.Container(
                 content=ft.Column([
-                    ft.Text(card["question"], size=18, weight="bold"),
-                    ft.Text(card["answer"], size=14, italic=True),
-                    ft.Text(f"Dificultad: {card.get('diff_level_name', 'N/A')}", size=12),
+                    ft.Text(card["card_question_concept"], size=18, weight="bold"),
+                    ft.Text(card["card_explanation"], size=14, italic=True),
+                    ft.Text(f"Dificultad: {card.get('card_diff_level_id', 'N/A')}", size=12),
                 ]),
                 padding=10,
-                border=ft.border.all(1, ft.colors.GREY),
+                # border=ft.border.all(1, ft.colors.GREY),
                 border_radius=8,
-                bgcolor=ft.colors.WHITE,
+                # bgcolor=ft.colors.WHITE,
                 margin=10
             )
             cards_column.controls.append(card_view)
