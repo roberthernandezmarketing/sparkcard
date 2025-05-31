@@ -7,13 +7,14 @@ import requests
 API_URL = "https://sparkcard-api.onrender.com/api/v1/cards/"
 
 def main(page: ft.Page):
+    page.bgcolor = ft.Colors.BLUE_50
     page.title = "Listado de Cards"
     page.scroll = ft.ScrollMode.AUTO
 
     cards_column = ft.Column()
 
     # Mostrar cargando
-    loading_text = ft.Text("Cargando cards...", size=16, weight="bold")
+    loading_text = ft.Text("Cargando Fichas...", size=16, weight="bold")
     page.add(loading_text)
     page.update()
 
@@ -28,15 +29,28 @@ def main(page: ft.Page):
         # Mostrar cada card
         for card in cards:
             card_view = ft.Container(
-                content=ft.Column([
+                content=
+                ft.Column(
+                [
+                    ft.Row(
+                        [
+                            ft.Text(f"Area:      {card["card_area_id"]}", size=12),
+                            ft.Text(f"Subarea:   {card["card_subarea_id"]}", size=12),
+                            ft.Text(f"Topico:    {card["card_topic_id"]}", size=12),
+                            ft.Text(f"Subtopico: {card["card_subtopic_id"]}", size=12),
+                            ft.Text(f"Dificultad: {card.get('card_diff_level_id', 'N/A')}", size=12, weight="bold"),
+                        ],
+                        # alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER
+                    ),
+
                     ft.Text(card["card_question_concept"], size=18, weight="bold"),
                     ft.Text(card["card_explanation"], size=14, italic=True),
-                    ft.Text(f"Dificultad: {card.get('card_diff_level_id', 'N/A')}", size=12),
                 ]),
                 padding=10,
-                # border=ft.border.all(1, ft.colors.GREY),
-                border_radius=8,
-                # bgcolor=ft.colors.WHITE,
+                border=ft.border.all(2, ft.Colors.GREY),
+                border_radius=10,
+                bgcolor=ft.Colors.WHITE,
                 margin=10
             )
             cards_column.controls.append(card_view)
