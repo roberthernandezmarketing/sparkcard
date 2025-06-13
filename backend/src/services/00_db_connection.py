@@ -1,5 +1,4 @@
 import psycopg2
-import pandas as pd
 
 # DB connection
 try:

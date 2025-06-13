@@ -1,12 +1,13 @@
-# sparkcard/backend/src/models/card_model.py
 from sqlalchemy import Column, Integer, Text, ForeignKey, TIMESTAMP, Boolean, ARRAY
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from uuid import uuid4
 from backend.src.db.base import Base
 
 class Card(Base):
     __tablename__ = 'card'
-    card_id = Column(Integer, primary_key=True)
+    card_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     card_area_id = Column(Integer, ForeignKey('area.area_id', ondelete='CASCADE'))
     card_subarea_id = Column(Integer, ForeignKey('subarea.subarea_id', ondelete='CASCADE'))
     card_topic_id = Column(Integer, ForeignKey('topic.topic_id', ondelete='CASCADE'))
@@ -22,7 +23,7 @@ class Card(Base):
     card_correct_answers = Column(ARRAY(Text)) # Stores a list of strings
     card_explanation = Column(Text)
     
-    card_creator_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'))
+    card_creator_id = Column(UUID(as_uuid=True), ForeignKey('users.user_id', ondelete='CASCADE'))
     card_status_id = Column(Integer, ForeignKey('status.status_id', ondelete='CASCADE'))
     card_date_creation = Column(TIMESTAMP(timezone=True), default=datetime.now)
     
