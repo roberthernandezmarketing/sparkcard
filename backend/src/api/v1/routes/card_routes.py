@@ -1,7 +1,7 @@
-# sparkcard/backend/src/api/v1/routes/card_routes.py
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
+from uuid import UUID
 
 from backend.src.schemas.card_schema import Card, CardCreate
 from backend.src.services.card_service import card_service
@@ -21,7 +21,8 @@ async def read_cards(
 
 @router.get("/{card_id}", response_model=Card)
 async def read_card(
-    card_id: int, db: AsyncSession = Depends(get_db_session)
+    card_id: UUID,  # Cambiado de int a UUID
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     Retrieve a single card by ID.
@@ -33,7 +34,8 @@ async def read_card(
 
 @router.post("/", response_model=Card, status_code=status.HTTP_201_CREATED)
 async def create_card(
-    card: CardCreate, db: AsyncSession = Depends(get_db_session)
+    card: CardCreate,
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     Create a new card.
@@ -42,9 +44,12 @@ async def create_card(
     return created_card
 
 # Puedes añadir más endpoints para PUT y DELETE si los necesitas más adelante.
+
 # @router.put("/{card_id}", response_model=Card)
 # async def update_card_route(
-#     card_id: int, card_update: CardUpdate, db: AsyncSession = Depends(get_db_session)
+#     card_id: UUID,  # Cambiado de int a UUID
+#     card_update: CardUpdate,
+#     db: AsyncSession = Depends(get_db_session)
 # ):
 #     updated_card = await card_service.update_existing_card(db, card_id, card_update)
 #     if not updated_card:
@@ -53,7 +58,8 @@ async def create_card(
 
 # @router.delete("/{card_id}", status_code=status.HTTP_204_NO_CONTENT)
 # async def delete_card_route(
-#     card_id: int, db: AsyncSession = Depends(get_db_session)
+#     card_id: UUID,  # Cambiado de int a UUID
+#     db: AsyncSession = Depends(get_db_session)
 # ):
 #     deleted_card = await card_service.delete_card_by_id(db, card_id)
 #     if not deleted_card:
