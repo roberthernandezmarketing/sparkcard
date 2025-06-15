@@ -12,8 +12,8 @@ class ListBase(BaseModel):
     list_name: str
     list_description: Optional[str] = None
     list_diff_level_id: Optional[int] = None
-    list_status: Optional[str] = 'draft'
-    list_type: Optional[str] = 'private'
+    list_type: Optional[int] = 2
+    list_status: Optional[int] = 1
     list_image: Optional[str] = None
     list_origin_id: Optional[UUID4] = None
 
