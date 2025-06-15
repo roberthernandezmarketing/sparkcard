@@ -11,7 +11,10 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
-from db.base_class import Base
+
+# from db.base_class import Base
+from backend.src.db.base import Base
+
 
 class List(Base):
     __tablename__ = "lists"

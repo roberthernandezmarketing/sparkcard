@@ -5,13 +5,14 @@
 # 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from core.database import get_db
-from schemas.list_schema import ListCreate, ListUpdate, ListOut
-from crud import list as crud_list
-from utils.auth import get_current_user
-from models.user_model import User
 import uuid
 from typing import List
+
+from backend.src.core.database import get_db
+from backend.src.schemas.list_schema import ListCreate, ListUpdate, ListOut
+from backend.src.crud import list as crud_list
+from backend.src.utils.auth import get_current_user
+from backend.src.models.user_model import User
 
 router = APIRouter(prefix="/lists", tags=["Lists"])
 

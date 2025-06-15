@@ -5,9 +5,10 @@
 # the List table in the database.
 # 
 from sqlalchemy.orm import Session
-from models.list_model import List
-from schemas.list_schema import ListCreate, ListUpdate
 import uuid
+
+from backend.src.models.list_model import List
+from backend.src.schemas.list_schema import ListCreate, ListUpdate
 
 def create_list(db: Session, list_data: ListCreate, user_id: uuid.UUID):
     new_list = List(**list_data.dict(), list_creator_id=user_id)
