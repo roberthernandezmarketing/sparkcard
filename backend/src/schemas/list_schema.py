@@ -32,4 +32,5 @@ class ListOut(ListBase):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        # orm_mode = True   # from Pydantic V1 to V2
+        from_attributes = True

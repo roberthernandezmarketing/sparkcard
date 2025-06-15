@@ -10,7 +10,8 @@ from typing import List
 
 from backend.src.core.database import get_db
 from backend.src.schemas.list_schema import ListCreate, ListUpdate, ListOut
-from backend.src.crud import list as crud_list
+# from backend.src.crud import list as crud_list
+from backend.src.crud import list_crud as crud_list
 from backend.src.utils.auth import get_current_user
 from backend.src.models.user_model import User
 
