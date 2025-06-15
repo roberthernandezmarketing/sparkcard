@@ -7,12 +7,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from backend.src.api.v1.routes import card_routes
+from backend.src.api.v1.routes import card_routes, list_routes
 
 app = FastAPI(
     title="Sparkcard Super API.",
     description="API for managing flashcards and study content by Rob Hernandez @kreativedevlab.",
-    version="1.0.0",
+    version="1.1.0",
 )
 
 # Define the allowed origins. In production, only your domain.
@@ -45,6 +45,7 @@ app.add_middleware(
 
 # Include routers by category for better organization in the API documentation
 app.include_router(card_routes.router, prefix="/api/v1/cards", tags=["Cards"])
+app.include_router(list_routes.router, prefix="/api/v1/lists", tags=["Lists"])
 
 # You can add more routers here as you create them
 # app.include_router(list_routes.router, prefix="/api/v1/lists", tags=["Lists"])

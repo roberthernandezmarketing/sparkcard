@@ -1,3 +1,7 @@
+#
+# sparkcard/backend/src/services/user_model.py
+# 
+# 
 from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
@@ -28,3 +32,5 @@ class UserRole(Base):
 
     user = relationship("User")
     role = relationship("Role")
+
+lists = relationship("List", back_populates="creator")
