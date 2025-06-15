@@ -1,3 +1,11 @@
+#
+# sparkcard/backend/src/models/card_model.py
+# 
+# Defines the card table model, including its columns, data types, primary keys, 
+# default values, and relationships to other tables. Defines the card's structure in the 
+# database.
+# 
+
 from sqlalchemy import Column, Integer, Text, ForeignKey, TIMESTAMP, Boolean, ARRAY
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship

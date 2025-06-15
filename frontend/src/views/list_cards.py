@@ -1,10 +1,11 @@
-#
 # list_cards.py
-#
+
 import flet as ft
 import requests
 
-API_URL = "https://sparkcard-api.onrender.com/api/v1/cards/"
+# API_URL = "https://sparkcard-api.onrender.com/api/v1/cards/"
+API_URL = "https://sparkcard-api.onrender.com/api/v1/cards/?limit=20&skip=110"
+
 
 def main(page: ft.Page):
     page.bgcolor = ft.Colors.BLUE_50
@@ -29,24 +30,22 @@ def main(page: ft.Page):
         # Mostrar cada card
         for card in cards:
             card_view = ft.Container(
-                content=
-                ft.Column(
-                [
-                    ft.Row(
-                        [
-                            ft.Text(f"Area:      {card["card_area_id"]}", size=12),
-                            ft.Text(f"Subarea:   {card["card_subarea_id"]}", size=12),
-                            ft.Text(f"Topico:    {card["card_topic_id"]}", size=12),
-                            ft.Text(f"Subtopico: {card["card_subtopic_id"]}", size=12),
-                            ft.Text(f"Dificultad: {card.get('card_diff_level_id', 'N/A')}", size=12, weight="bold"),
-                        ],
-                        # alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                        vertical_alignment=ft.CrossAxisAlignment.CENTER
-                    ),
-
-                    ft.Text(card["card_question_concept"], size=18, weight="bold"),
-                    ft.Text(card["card_explanation"], size=14, italic=True),
-                ]),
+                content=ft.Column(
+                    [
+                        ft.Row(
+                            [
+                                ft.Text(f"Area:      {card['card_area_id']}", size=12),
+                                ft.Text(f"Subarea:   {card['card_subarea_id']}", size=12),
+                                ft.Text(f"Topico:    {card['card_topic_id']}", size=12),
+                                ft.Text(f"Subtopico: {card['card_subtopic_id']}", size=12),
+                                ft.Text(f"Dificultad: {card.get('card_diff_level_id', 'N/A')}", size=12, weight="bold"),
+                            ],
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER
+                        ),
+                        ft.Text(card["card_question_concept"], size=18, weight="bold"),
+                        ft.Text(card["card_explanation"], size=14, italic=True),
+                    ]
+                ),
                 padding=10,
                 border=ft.border.all(2, ft.Colors.GREY),
                 border_radius=10,
@@ -54,6 +53,10 @@ def main(page: ft.Page):
                 margin=10
             )
             cards_column.controls.append(card_view)
+
+        # Mostrar total al final
+        total_text = ft.Text(f"Total de Fichas: {len(cards)}", size=16, weight="bold", color=ft.Colors.BLACK)
+        cards_column.controls.append(total_text)
 
         page.add(cards_column)
 

@@ -1,3 +1,8 @@
+# 
+# sparkcard/backend/src/api/v1/routes/card_routes.py
+# 
+# Defines the API endpoints related to cards (CRUD: Create, Read, Update, Delete).
+# 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
@@ -43,7 +48,7 @@ async def create_card(
     created_card = await card_service.create_new_card(db, card)
     return created_card
 
-# Puedes añadir más endpoints para PUT y DELETE si los necesitas más adelante.
+# You can add more endpoints for PUT and DELETE if you need them later.
 
 # @router.put("/{card_id}", response_model=Card)
 # async def update_card_route(

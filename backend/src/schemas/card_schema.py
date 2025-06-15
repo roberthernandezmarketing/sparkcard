@@ -1,3 +1,9 @@
+#
+# sparkcard/backend/src/services/card_service.py
+# 
+# Defines the Pydantic schemas for creating (CardCreate), updating (CardUpdate), 
+# and reading (Card). It includes type validation and field optionality. 
+# 
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime
@@ -18,7 +24,7 @@ class CardBase(BaseModel):
     card_answer_options: List[str] = Field(default_factory=list)
     card_correct_answers: List[str] = Field(default_factory=list)
     card_explanation: Optional[str] = None
-    card_creator_id: UUID  # Cambiado de int a UUID
+    card_creator_id: UUID 
     card_status_id: int
 
 # Schema for creating a Card
@@ -40,12 +46,12 @@ class CardUpdate(BaseModel):
     card_answer_options: Optional[List[str]] = None
     card_correct_answers: Optional[List[str]] = None
     card_explanation: Optional[str] = None
-    card_creator_id: Optional[UUID] = None  # Cambiado de int a UUID
+    card_creator_id: Optional[UUID] = None  
     card_status_id: Optional[int] = None
 
 # Schema for reading a Card (includes ID and default values)
 class Card(CardBase):
-    card_id: UUID  # Cambiado de int a UUID
+    card_id: UUID  
     card_date_creation: datetime
     card_xtimes_showed: int
     card_xtimes_right: int

@@ -1,13 +1,14 @@
 # 
 # sparkcard/backend/src/core/config.py
 # 
-# configuración general de la aplicación y la conexión a la base de datos.
+# Handles application configuration, loading environment variables (such as DATABASE_URL) 
+# from a .env file using Pydantic-settings.
 # 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from dotenv import load_dotenv
 import os
 
-load_dotenv() # Cargar variables de entorno del archivo .env
+load_dotenv() # Load environment variables from the .env file
 
 class Settings(BaseSettings):
     DATABASE_URL: str = os.getenv("DATABASE_URL")

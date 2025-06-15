@@ -1,0 +1,121 @@
+Listado de rutas de carpetas
+El número de serie del volumen es C0D1-FF6F
+C:.
+│   main.py
+│   tree.txt
+│   __init__.py
+│   
+├───api
+│   │   __init__.py
+│   │   
+│   ├───v1
+│   │   │   deps.py
+│   │   │   __init__.py
+│   │   │   
+│   │   ├───routes
+│   │   │   │   card_routes.py
+│   │   │   │   user.py
+│   │   │   │   __init__.py
+│   │   │   │   
+│   │   │   └───__pycache__
+│   │   │           card_routes.cpython-313.pyc
+│   │   │           __init__.cpython-313.pyc
+│   │   │           
+│   │   └───__pycache__
+│   │           deps.cpython-313.pyc
+│   │           __init__.cpython-313.pyc
+│   │           
+│   └───__pycache__
+│           __init__.cpython-313.pyc
+│           
+├───core
+│   │   config.py
+│   │   database.py
+│   │   security.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           config.cpython-313.pyc
+│           database.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───crud
+│   │   card.py
+│   │   user.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           card.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───db
+│   │   base.py
+│   │   base_class.py
+│   │   session.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           base.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───models
+│   │   area_model.py
+│   │   author_model.py
+│   │   card_model.py
+│   │   card_type_model.py
+│   │   diff_level_model.py
+│   │   language_model.py
+│   │   list_model.py
+│   │   question_type_model.py
+│   │   source_model.py
+│   │   status_model.py
+│   │   subarea_model.py
+│   │   subtopic_model.py
+│   │   topic_model.py
+│   │   user_model.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           area_model.cpython-313.pyc
+│           card_model.cpython-313.pyc
+│           card_type_model.cpython-313.pyc
+│           diff_level_model.cpython-313.pyc
+│           language_model.cpython-313.pyc
+│           question_type_model.cpython-313.pyc
+│           source_model.cpython-313.pyc
+│           status_model.cpython-313.pyc
+│           subarea_model.cpython-313.pyc
+│           subtopic_model.cpython-313.pyc
+│           topic_model.cpython-313.pyc
+│           user_model.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───schemas
+│   │   card_schema.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           card_schema.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───services
+│   │   00_db_connection.py
+│   │   01_verify_CSV.py
+│   │   02_card_massive_load.py
+│   │   cards.csv
+│   │   cards_template.csv
+│   │   card_service.py
+│   │   __init__.py
+│   │   
+│   └───__pycache__
+│           card_service.cpython-313.pyc
+│           __init__.cpython-313.pyc
+│           
+├───utils
+│       auth.py
+│       __init__.py
+│       
+└───__pycache__
+        main.cpython-313.pyc
+        __init__.cpython-313.pyc
+        

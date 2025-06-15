@@ -1,13 +1,19 @@
-# sparkcard/backend/src/crud/card.py
+# 
+# sparkcard/backend/src/crud/card_crud.py
+# 
+# Implements CRUD operations for the Card model. Handles direct interaction with 
+# the Card table in the database.
+# 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import List, Optional
+from uuid import UUID  # <--- Importante
 
 from backend.src.models.card_model   import Card as CardModel
 from backend.src.schemas.card_schema import CardCreate, CardUpdate
 
 class CRUDCard:
-    async def get_card(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:
+    async def get_card(self, db: AsyncSession, card_id: UUID) -> Optional[CardModel]:
         result = await db.execute(select(CardModel).filter(CardModel.card_id == card_id))
         return result.scalar_one_or_none()
 
@@ -22,7 +28,7 @@ class CRUDCard:
         await db.refresh(db_card)
         return db_card
 
-    async def update_card(self, db: AsyncSession, card_id: int, card_update: CardUpdate) -> Optional[CardModel]:
+    async def update_card(self, db: AsyncSession, card_id: UUID, card_update: CardUpdate) -> Optional[CardModel]:
         db_card = await self.get_card(db, card_id)
         if db_card:
             update_data = card_update.model_dump(exclude_unset=True)
@@ -32,7 +38,7 @@ class CRUDCard:
             await db.refresh(db_card)
         return db_card
 
-    async def delete_card(self, db: AsyncSession, card_id: int) -> Optional[CardModel]:
+    async def delete_card(self, db: AsyncSession, card_id: UUID) -> Optional[CardModel]:
         db_card = await self.get_card(db, card_id)
         if db_card:
             await db.delete(db_card)

@@ -1,6 +1,10 @@
 # 
 # sparkcard/backend/src/core/database.py
 # 
+# Configure the connection to the PostgreSQL database using SQLAlchemy and asyncio. 
+# Define the backend, the asynchronous local session, and a function to retrieve 
+# database sessions.
+# 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 from .config import settings
