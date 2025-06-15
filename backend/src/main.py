@@ -10,7 +10,7 @@ import os
 from backend.src.api.v1.routes import card_routes
 
 app = FastAPI(
-    title="Sparkcard API.",
+    title="Sparkcard Super API.",
     description="API for managing flashcards and study content by Rob Hernandez @kreativedevlab.",
     version="1.0.0",
 )
