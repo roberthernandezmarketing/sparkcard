@@ -33,3 +33,6 @@ def update_list(db: Session, db_list: List, update_data: ListUpdate):
 def delete_list(db: Session, db_list: List):
     db.delete(db_list)
     db.commit()
+
+def get_all_lists(db: Session):
+    return db.query(List).all()
