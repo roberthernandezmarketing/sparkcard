@@ -23,11 +23,14 @@ class List(Base):
     list_name = Column(Text, nullable=False)
     list_description = Column(Text)
     list_date_creation = Column(TIMESTAMP, default=datetime.utcnow)
+    # list_diff_level_id INT REFERENCES diff_level(diff_level_id) ON DELETE CASCADE,
     list_diff_level_id = Column(Integer, ForeignKey("diff_level.diff_level_id", ondelete="CASCADE"))
     list_percent_advanced = Column(Numeric, default=0)
     list_punch_score = Column(Numeric, default=0)
-    list_status = Column(String, default='draft')
-    list_type = Column(String, default='private')
+    # list_status INT REFERENCES list_status_lookup(list_status_id),
+    # list_type INT REFERENCES list_type_lookup(list_type_id) ,
+    list_status = Column(Integer, ForeignKey("list_status_lookup.list_status_id", ondelete="CASCADE"))
+    list_type = Column(Integer, ForeignKey("list_type_lookup.list_type_id", ondelete="CASCADE"))
     list_origin_id = Column(UUID(as_uuid=True), ForeignKey("lists.list_id"))
     list_creator_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id"))
     list_xtimes_showed = Column(Integer, default=0)
