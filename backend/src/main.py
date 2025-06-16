@@ -7,7 +7,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from fastapi.openapi.utils import get_openapi
+from fastapi.security import OAuth2PasswordBearer
+
 from backend.src.api.v1.routes import card_routes, list_routes, auth_routes
+from backend.src.core.config import settings
 
 app = FastAPI(
     title="Sparkcard Super API w/OAuth2.",
@@ -55,3 +59,34 @@ app.include_router(auth_routes.router, prefix="/api/v1/auth", tags=["Authenticat
 @app.get("/")
 async def root():
     return {"message": "Welcome to Sparkcard API!"}
+
+# 🔒 OAuth2PasswordBearer para que Swagger muestre el botón "Authorize"
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="SparkCard API",
+        version="1.0",
+        description="API para SparkCard",
+        routes=app.routes,
+    )
+    openapi_schema["components"]["securitySchemes"] = {
+        "OAuth2PasswordBearer": {
+            "type": "oauth2",
+            "flows": {
+                "password": {
+                    "tokenUrl": "/api/v1/auth/login",
+                    "scopes": {}
+                }
+            }
+        }
+    }
+    for path in openapi_schema["paths"].values():
+        for method in path.values():
+            method["security"] = [{"OAuth2PasswordBearer": []}]
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
