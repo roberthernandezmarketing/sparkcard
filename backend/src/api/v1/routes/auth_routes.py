@@ -15,17 +15,16 @@ router = APIRouter()
 
 @router.post("/register", response_model=UserOut)
 async def register(user_data: UserCreate, db: AsyncSession = Depends(get_db)):
-    user = await get_user_by_username(db, user_data.user_name)
+    user = await get_user_by_username(db, user_data.user_name)  # use user_name of Model
     if user:
         raise HTTPException(status_code=400, detail="The user already exists")
-    # new_user = await create_user(db, user_data.username, user_data.email, user_data.password)
     new_user = await create_user(db, user_data)
     return new_user
 
 @router.post("/login", response_model=Token)
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
-    user = await get_user_by_username(db, form_data.user_name)
-    if not user or not verify_password(form_data.password, user.hashed_password):
+    user = await get_user_by_username(db, form_data.username)  # use username in form
+    if not user or not verify_password(form_data.password, user.user_password_hash):
         raise HTTPException(status_code=401, detail="Incorrect username or password")
-    access_token = create_access_token(data={"sub": user.user_name})
+    access_token = create_access_token(data={"sub": str(user.user_name)})
     return {"access_token": access_token, "token_type": "bearer"}
