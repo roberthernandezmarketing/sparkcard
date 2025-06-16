@@ -14,6 +14,8 @@ from backend.src.crud.user_crud import (
 from backend.src.utils.security import verify_password, create_access_token
 from backend.src.core.database import get_db
 from backend.src.api.v1.deps_user import get_current_user
+from backend.src.schemas.user_schema import ForgotPasswordRequest, ChangePasswordRequest
+from backend.src.utils.security import get_password_hash
 import uuid
 
 router = APIRouter()
@@ -97,3 +99,35 @@ async def delete_user_route(
 @router.post("/logout")
 async def logout(current_user: UserOut = Depends(get_current_user)):
     return {"message": f"User '{current_user.user_name}' has been logged out. Please discard the token on client side."}
+
+@router.post("/forgot-password")
+async def forgot_password(
+    request: ForgotPasswordRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    user = await get_user_by_email(db, request.email)
+    if not user:
+        raise HTTPException(status_code=404, detail="Email not found")
+
+    # Aquí deberías generar un token y enviarlo por correo (pendiente implementar)
+    # De momento solo respondemos con un mensaje estático
+    return {"message": "If the email is registered, a recovery link has been sent."}
+
+@router.post("/change-password")
+async def change_password(
+    payload: ChangePasswordRequest,
+    db: AsyncSession = Depends(get_db),
+    current_user: UserOut = Depends(get_current_user),
+):
+    user = await get_user_by_id(db, current_user.user_id)
+    if not user or not verify_password(payload.current_password, user.user_password_hash):
+        raise HTTPException(status_code=400, detail="Current password is incorrect")
+
+    hashed = get_password_hash(payload.new_password)
+    await update_user(db, user.user_id, {"user_password_hash": hashed})
+    return {"message": "Password updated successfully"}
+
+# ¿Qué falta para hacerlo robusto?
+# Envío de correo real con token en forgot-password.
+# Endpoint para resetear contraseña con token temporal (como POST /reset-password).
+# Protección contra ataques de fuerza bruta (rate limiting).

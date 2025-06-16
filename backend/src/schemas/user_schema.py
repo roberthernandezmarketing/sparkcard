@@ -4,7 +4,7 @@
 # Defines the Pydantic schemas for login (UserLogin), create (UserCreate), 
 # It includes type validation and field optionality. 
 # 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 import uuid
 
 class UserCreate(BaseModel):
@@ -32,3 +32,10 @@ class UserLogin(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str = Field(..., min_length=6)
+    new_password: str = Field(..., min_length=6)
