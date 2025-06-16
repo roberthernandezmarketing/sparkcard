@@ -10,7 +10,7 @@ from backend.src.schemas.user_schema import UserCreate, UserOut, Token
 from backend.src.crud.user_crud import create_user, get_user_by_username
 from backend.src.utils.security import verify_password, create_access_token
 from backend.src.core.database import get_db
-from backend.src.api.v1.routes import get_current_user
+from backend.src.api.v1.deps_user import get_current_user
 
 router = APIRouter()
 
