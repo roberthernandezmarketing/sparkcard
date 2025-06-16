@@ -88,3 +88,12 @@ async def delete_user_route(
     if not deleted:
         raise HTTPException(status_code=404, detail="User not found or already deleted")
     return None
+
+# This a symbolic Logout, later we have use: Redis or 
+# table (revoked_tokens_list)
+#   Save issued tokens and their expiration dates.
+#   Invalidate tokens on logout.
+#   Check on each request if the token is in that list.
+@router.post("/logout")
+async def logout(current_user: UserOut = Depends(get_current_user)):
+    return {"message": f"User '{current_user.user_name}' has been logged out. Please discard the token on client side."}
