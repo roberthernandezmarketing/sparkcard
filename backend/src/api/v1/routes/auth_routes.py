@@ -2,12 +2,15 @@
 # backend/src/api/v1/routes/auth_routes.py
 # 
 # Defines the API endpoints related to users (CRUD: Create, Read, Update, Delete).
-# 
+#
+
 from fastapi.security import OAuth2PasswordRequestForm
-from fastapi import APIRouter, Depends, HTTPException, status, Body
+from fastapi import APIRouter, Depends, HTTPException, status, Body, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from backend.src.schemas.user_schema import UserCreate, UserOut, Token
-from backend.src.crud.user_crud import create_user, get_user_by_username, update_user, soft_delete_user, get_user_by_id
+from backend.src.crud.user_crud import (
+    create_user, get_user_by_username, update_user, soft_delete_user, get_user_by_id, get_user_by_email
+)
 from backend.src.utils.security import verify_password, create_access_token
 from backend.src.core.database import get_db
 from backend.src.api.v1.deps_user import get_current_user
@@ -34,6 +37,27 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
 @router.get("/me", response_model=UserOut)
 async def get_me(current_user: UserOut = Depends(get_current_user)):
     return current_user
+
+@router.get("/users/id/{user_id}", response_model=UserOut)
+async def get_user_by_id_route(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    user = await get_user_by_id(db, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+@router.get("/users/username/{username}", response_model=UserOut)
+async def get_user_by_username_route(username: str, db: AsyncSession = Depends(get_db)):
+    user = await get_user_by_username(db, username)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+@router.get("/users/email/{email}", response_model=UserOut)
+async def get_user_by_email_route(email: str, db: AsyncSession = Depends(get_db)):
+    user = await get_user_by_email(db, email)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
 
 @router.put("/users/{user_id}", response_model=UserOut)
 async def update_user_route(
