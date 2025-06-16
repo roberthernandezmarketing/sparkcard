@@ -14,3 +14,5 @@ class ListStatusLookup(Base):
 
     # Opcional: Define una relación inversa si la necesitas
     # lists = relationship("List", back_populates="status") # Necesitarías definir 'status' en el modelo List
+
+    
