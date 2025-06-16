@@ -6,8 +6,11 @@
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
+import os
+from dotenv import load_dotenv
 
-SECRET_KEY = "your strong password"
+load_dotenv()  # Si no se está haciendo globalmente
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_dev_key_unsafe")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 

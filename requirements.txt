@@ -9,7 +9,9 @@ charset-normalizer==3.4.2
 click==8.2.1
 colorama==0.4.6
 cookiecutter==2.6.0
+dnspython==2.7.0
 ecdsa==0.19.1
+email_validator==2.2.0
 fastapi==0.115.12
 flet==0.28.3
 flet-cli==0.28.3
