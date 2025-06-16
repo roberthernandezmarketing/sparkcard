@@ -14,7 +14,7 @@ from uuid import uuid4
 from backend.src.db.base import Base
 
 class Card(Base):
-    __tablename__ = 'card'
+    __tablename__ = 'cards'
     card_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     card_area_id = Column(Integer, ForeignKey('area.area_id', ondelete='CASCADE'))
     card_subarea_id = Column(Integer, ForeignKey('subarea.subarea_id', ondelete='CASCADE'))
