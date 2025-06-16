@@ -11,10 +11,6 @@ from backend.src.schemas.user_schema import UserCreate
 from backend.src.utils.security import get_password_hash
 import uuid
 
-async def get_user_by_id(db: AsyncSession, user_id: uuid.UUID) -> User | None:
-    result = await db.execute(select(User).where(User.user_id == user_id, User.user_is_active == True))
-    return result.scalars().first()
-
 async def get_user_by_username(db: AsyncSession, username: str):
     result = await db.execute(select(User).where(User.user_name == username, User.user_is_active == True))
     return result.scalars().first()
@@ -62,4 +58,6 @@ async def soft_delete_user(db: AsyncSession, user_id: uuid.UUID) -> bool:
     await db.commit()
     return result.rowcount > 0
 
-
+async def get_user_by_id(db: AsyncSession, user_id: uuid.UUID) -> User | None:
+    result = await db.execute(select(User).where(User.user_id == user_id, User.user_is_active == True))
+    return result.scalars().first()
