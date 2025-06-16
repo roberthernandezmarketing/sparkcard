@@ -39,28 +39,28 @@ async def get_me(current_user: UserOut = Depends(get_current_user)):
     return current_user
 
 @router.get("/users/id/{user_id}", response_model=UserOut)
-async def get_user_by_id(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+async def get_user_by_id_route(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_id(db, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
 @router.get("/users/username/{username}", response_model=UserOut)
-async def get_user_by_username(username: str, db: AsyncSession = Depends(get_db)):
+async def get_user_by_username_route(username: str, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_username(db, username)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
 @router.get("/users/email/{email}", response_model=UserOut)
-async def get_user_by_email(email: str, db: AsyncSession = Depends(get_db)):
+async def get_user_by_email_route(email: str, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_email(db, email)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
 @router.put("/users/{user_id}", response_model=UserOut)
-async def update_user(
+async def update_user_route(
     user_id: uuid.UUID,
     updated_user: UserCreate = Body(...),
     current_user: UserOut = Depends(get_current_user),
@@ -76,7 +76,7 @@ async def update_user(
     return updated
 
 @router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(
+async def delete_user_route(
     user_id: uuid.UUID,
     current_user: UserOut = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
