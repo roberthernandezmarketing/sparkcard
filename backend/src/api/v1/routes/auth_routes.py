@@ -18,7 +18,8 @@ async def register(user_data: UserCreate, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_username(db, user_data.username)
     if user:
         raise HTTPException(status_code=400, detail="The user already exists")
-    new_user = await create_user(db, user_data.username, user_data.email, user_data.password)
+    # new_user = await create_user(db, user_data.username, user_data.email, user_data.password)
+    new_user = await create_user(db, user_data)
     return new_user
 
 @router.post("/login", response_model=Token)
