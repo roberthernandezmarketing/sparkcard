@@ -29,6 +29,6 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
     access_token = create_access_token(data={"sub": str(user.user_name)})
     return {"access_token": access_token, "token_type": "bearer"}
 
-@router.get("/me", response_model=UserOut)
-async def get_me(current_user: UserOut = Depends(get_current_user)):
-    return current_user
+# @router.get("/me", response_model=UserOut)
+# async def get_me(current_user: UserOut = Depends(get_current_user)):
+#     return current_user
