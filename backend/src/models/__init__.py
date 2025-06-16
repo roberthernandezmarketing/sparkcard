@@ -1,4 +1,7 @@
+#
 # sparkcard/backend/src/models/__init__.py
+# 
+# 
 from .area_model import Area
 from .subarea_model import Subarea
 from .topic_model import Topic
@@ -11,3 +14,7 @@ from .question_type_model import QuestionType
 from .user_model import User, Role, UserRole
 from .status_model import Status
 from .card_model import Card, Tag, CardTag, Keyword, CardKeyword
+
+from .list_model import List
+from .list_status_lookup_model import ListStatusLookup 
+from .list_type_lookup_model import ListTypeLookup     
