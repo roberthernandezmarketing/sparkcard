@@ -10,7 +10,7 @@ import uuid
 class UserCreate(BaseModel):
     user_name: str
     user_email: EmailStr
-    user_password: str
+    user_password_hash: str
     user_first_name: str
     user_last_name: str
 
@@ -27,7 +27,7 @@ class UserOut(BaseModel):
 
 class UserLogin(BaseModel):
     user_name: str
-    user_password: str
+    user_password_hash: str
 
 class Token(BaseModel):
     access_token: str

@@ -27,5 +27,5 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
     user = await get_user_by_username(db, form_data.user_name)
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Incorrect username or password")
-    access_token = create_access_token(data={"sub": user.username})
+    access_token = create_access_token(data={"sub": user.user_name})
     return {"access_token": access_token, "token_type": "bearer"}
