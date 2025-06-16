@@ -45,3 +45,6 @@ class List(Base):
     # Agrega relaciones para los lookups
     status_obj = relationship("ListStatusLookup", backref="lists_with_status") # Puedes renombrar 'status_obj' y 'lists_with_status'
     type_obj = relationship("ListTypeLookup", backref="lists_of_type")         # Puedes renombrar 'type_obj' y 'lists_of_type'
+
+
+    

@@ -1,3 +1,8 @@
+# 
+# backend/src/api/v1/routes/list_routes.py
+# 
+# Defines the API endpoints related to lists (CRUD: Create, Read, Update, Delete).
+#
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
