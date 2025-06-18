@@ -51,15 +51,6 @@ sparkcard
 │               auth.py
 │               
 ├───frontend
-│   └───src
-│       │   main.py
-│       │   
-│       ├───components
-│       ├───services
-│       │       api_client.py
-│       │       
-│       └───views
-│               generate_card.py
 │               
 └───scripts
         bulk_card_loader.py
